@@ -327,12 +327,15 @@ form.addEventListener("submit", async function(e) {
         );
 
         if (response.ok) {
+            button.disabled = true;
+            button.innerText = "تم إرسال طلب الانتساب بنجاح";
             alert("تم إرسال الطلب بنجاح ✅");
             form.reset();
             button.disabled = false;
             button.innerText = "إرسال طلب الانتساب";
         } else {
-            alert("حدث خطأ أثناء الإرسال ❌");
+            const message = await response.text();
+            alert(message);
             button.disabled = false;
             button.innerText = "إرسال طلب الانتساب";
         }
