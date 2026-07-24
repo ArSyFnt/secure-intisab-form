@@ -82,7 +82,7 @@ button {
 }
 
 .note {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 15px;
     background: #eee;
     font-size: 14px;
@@ -100,10 +100,10 @@ button {
 الجبهة العربية السورية
 </div>
 
-<div>
-رقم الطلب: ........<br>
-تاريخ التقديم: ........
+<div class="note">
+(*) تعني أن الحقل إلزامي
 </div>
+
 </div>
 
 
@@ -117,133 +117,186 @@ button {
 </p>
 
 
+
 <div class="section">
+
 <h2>1- البيانات الشخصية</h2>
+
 
 <label>اللقب (إن وجد)</label>
 <input>
 
-<label>الاسم الثلاثي</label>
-<input>
 
-<label>الاسم الكامل</label>
-<input>
+<label>الاسم الثلاثي *</label>
+<input required>
 
-<label>الجنس</label>
-<select>
+
+<label>الاسم الكامل *</label>
+<input required>
+
+
+<label>الجنس *</label>
+<select required>
+<option value="">اختر</option>
 <option>ذكر</option>
 <option>أنثى</option>
 </select>
 
-<label>مكان الميلاد</label>
-<input>
 
-<label>تاريخ الميلاد</label>
-<input type="date">
+<label>مكان الميلاد *</label>
+<input required>
 
-<label>مكان الإقامة الحالي</label>
-<input>
 
-<label>المحافظة / المنطقة</label>
-<input>
+<label>تاريخ الميلاد *</label>
+<input type="date" required>
 
-<label>الجنسية</label>
-<input>
 
-<label>رقم الهاتف</label>
-<input>
+<label>مكان الإقامة الحالي *</label>
+<input required>
+
+
+<label>المحافظة / المنطقة *</label>
+<input required>
+
+
+<label>الجنسية *</label>
+<input required>
+
+
+<label>رقم الهاتف *</label>
+<input required>
+
+
+<label>البريد الإلكتروني</label>
+<input type="email">
+
 
 <label>العنوان التفصيلي</label>
 <input>
 
+
 </div>
 
 
+
+
 <div class="section">
+
 <h2>2- البيانات الأكاديمية والمهنية</h2>
+
 
 <label>التخصص / الجامعة / المعهد</label>
 <input>
 
+
 <label>المؤهل العلمي</label>
 <input>
+
 
 <label>مكان العمل</label>
 <input>
 
+
 <label>الخبرات الحالية</label>
 <textarea></textarea>
 
+
 </div>
 
 
+
+
+
 <div class="section">
+
 <h2>3- الالتزام والانتماء</h2>
 
-<label>أسباب رغبتي في الانضمام</label>
-<textarea></textarea>
+
+<label>أسباب رغبتي في الانضمام *</label>
+<textarea required></textarea>
 
 
-<div class="checkbox">
-<input type="checkbox">
- ألتزم بمبادئ الجبهة العربية السورية وأهدافها.
-</div>
-
-<div class="checkbox">
-<input type="checkbox">
- أحترم نظامها الداخلي وقرارات هيئاتها القيادية.
-</div>
-
-<div class="checkbox">
-<input type="checkbox">
- أعمل بإخلاص من أجل وحدة سوريا وسيادتها.
-</div>
-
-<div class="checkbox">
-<input type="checkbox">
- أمتنع عن أي نشاط يضر بالحركة أو أهدافها.
-</div>
-
-<div class="checkbox">
-<input type="checkbox">
- أتحمل المسؤولية الكاملة عن صحة معلوماتي.
-</div>
-
-</div>
-
-
-<div class="section">
-<h2>4- التوقيع وإقرار الصحة</h2>
-
-<p>
-أقر أنا الموقع أدناه أن جميع المعلومات الواردة في هذه الاستمارة صحيحة ودقيقة، وأوافق على الالتزام بنظام ومبادئ الجبهة العربية السورية.
-</p>
-
-<label>الاسم</label>
-<input>
-
-
-<label>التاريخ</label>
-<input type="date">
-
-</div>
 
 <div class="checkbox">
 <input type="checkbox" required>
- أقر بأن جميع المعلومات التي قدمتها صحيحة، وأوافق على الالتزام بنظام ومبادئ الجبهة العربية السورية.
+ ألتزم بمبادئ الجبهة العربية السورية وأهدافها.
 </div>
-    
+
+
+<div class="checkbox">
+<input type="checkbox" required>
+ أحترم نظامها الداخلي وقرارات هيئاتها القيادية.
+</div>
+
+
+<div class="checkbox">
+<input type="checkbox" required>
+ أعمل بإخلاص من أجل وحدة سوريا وسيادتها.
+</div>
+
+
+<div class="checkbox">
+<input type="checkbox" required>
+ أمتنع عن أي نشاط يضر بالحركة أو أهدافها.
+</div>
+
+
+<div class="checkbox">
+<input type="checkbox" required>
+ أتحمل المسؤولية الكاملة عن صحة معلوماتي.
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="section">
+
+<h2>4- إقرار صحة المعلومات</h2>
+
+
+<p>
+أقر أنا مقدم الطلب أن جميع المعلومات الواردة في هذه الاستمارة صحيحة ودقيقة، وأوافق على الالتزام بنظام ومبادئ الجبهة العربية السورية.
+</p>
+
+
+<label>الاسم *</label>
+<input required>
+
+
+<label>التاريخ *</label>
+<input type="date" required>
+
+
+<div class="checkbox">
+<input type="checkbox" required>
+ أوافق على الإقرار بصحة المعلومات المقدمة.
+</div>
+
+
+</div>
+
+
+
+
+
 <button>
 إرسال طلب الانتساب
 </button>
 
 
+
+
 <div class="note">
+
 🔒 جميع المعلومات والوثائق المقدمة ستعامل بسرية تامة، وتُستخدم لأغراض تنظيمية داخل الجبهة العربية السورية فقط.
-</div>
-
 
 </div>
-
 </body>
 </html>
+
+
+</div>
