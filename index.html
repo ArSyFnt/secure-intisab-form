@@ -329,13 +329,19 @@ form.addEventListener("submit", async function(e) {
         if (response.ok) {
             alert("تم إرسال الطلب بنجاح ✅");
             form.reset();
+            button.disabled = false;
+            button.innerText = "إرسال طلب الانتساب";
         } else {
             alert("حدث خطأ أثناء الإرسال ❌");
+            button.disabled = false;
+            button.innerText = "إرسال طلب الانتساب";
         }
 
     } catch(error) {
 
         alert("فشل الاتصال بالخادم ❌");
+        button.disabled = false;
+            button.innerText = "إرسال طلب الانتساب";
 
     }
 
