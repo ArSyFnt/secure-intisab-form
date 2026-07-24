@@ -367,16 +367,28 @@ form.addEventListener("submit", async function(e) {
     let data = {};
 
     formData.forEach((value, key) => {
-        data[key] = value;
-    });
+    data[key] = value;
+});
 
+const email = data.email;
+const encryptedData = await openpgp.encrypt({
+    message: await openpgp.createMessage({
+        text: JSON.stringify(data)
+    }),
+    encryptionKeys: await openpgp.readKey({
+        armoredKey: publicKey
+    })
+});    
     try {
 
         const response = await fetch(
             "https://secure-intisab-api.arabicsyrianfront.workers.dev/",
             {
                 method: "POST",
-                body: JSON.stringify(data)
+                body: JSON.stringify({
+    email: email,
+    encrypted_data: encryptedData
+})
             }
         );
 
