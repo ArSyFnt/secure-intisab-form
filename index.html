@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -8,84 +9,229 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    font-family: "Cairo", sans-serif;
+    background: #EAEAEA;
     margin: 0;
     padding: 20px;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("background.png") center/cover no-repeat;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 .container {
     max-width: 900px;
     margin: auto;
-    background: white;
+    background: rgba(255,255,255,0.35);
     padding: 25px;
     border-radius: 10px;
+    border: 2px solid #C49A39;
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
 }
-
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid #333;
+    border-bottom: 2px solid #C49A39;
     padding-bottom: 15px;
+    gap: 20px;
 }
+
 
 .logo-placeholder {
     font-weight: bold;
+    color: #0A0A0A;
+    text-align: center;
+    font-size: 18px;
 }
+
+
+.logo-placeholder img {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
 
 h1 {
     text-align: center;
     font-size: 24px;
+    color: #0A0A0A;
+    font-weight: 700;
 }
+
 
 .section {
     margin-top: 25px;
 }
 
+
 .section h2 {
-    background: #eee;
+    background: #0A0A0A;
+    color: #C49A39;
     padding: 10px;
     font-size: 18px;
+    border-radius: 5px;
 }
+
 
 label {
     display: block;
     margin-top: 12px;
-    font-weight: bold;
+    font-weight: 600;
 }
 
-input, textarea, select {
+input:not([type="checkbox"]), textarea, select {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
     box-sizing: border-box;
+    border: 1px solid #C49A39;
+    border-radius: 5px;
 }
+
+
+input[type="checkbox"] {
+    width: auto;
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+
 
 textarea {
     height: 120px;
 }
 
 .checkbox {
-    margin-top: 10px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    line-height: 1.8;
+    text-align: right;
 }
 
 button {
     margin-top: 25px;
     width: 100%;
     padding: 15px;
-    background: #222;
-    color: white;
-    border: none;
+    background: #0A0A0A;
+    color: #C49A39;
+    border: 2px solid #C49A39;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
 }
 
+
 .note {
     margin-top: 20px;
     padding: 15px;
-    background: #eee;
+    background: #EAEAEA;
     font-size: 14px;
+    border-right: 4px solid #C49A39;
+    color: #5E471C;
+}
+
+
+/* تحسين الجوال */
+@media(max-width:600px){
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .logo-placeholder img {
+        width: 100px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+}
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.step {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #EAEAEA;
+    color: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border: 2px solid #C49A39;
+}
+
+.step.active {
+    background: #0A0A0A;
+    color: #C49A39;
+}
+
+
+.form-page {
+    display: none;
+}
+
+.form-page.active {
+    display: block;
+}
+
+
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.nav-buttons button {
+    margin-top: 0;
+}
+
+.prev-btn {
+    background: #555;
+    color: white;
+    border-color: #777;
+}
+
+.next-btn {
+    background: #C49A39;
+    color: #0A0A0A;
+}
+.submit-btn {
+    background: #A8181A;
+    color: white;
+    border: 2px solid #C49A39;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background: #C49A39;
+    color: #0A0A0A;
 }
 </style>
 <script src="https://unpkg.com/openpgp@5/dist/openpgp.min.js"></script>
@@ -95,10 +241,11 @@ button {
 
 <div class="container">
 
-<form>
+<form novalidate>
 <div class="header">
 <div class="logo-placeholder">
-الجبهة العربية السورية
+    <img src="logo.png" alt="شعار الجبهة">
+    <div>الجبهة العربية السورية</div>
 </div>
 
 <div class="note">
@@ -112,13 +259,19 @@ button {
 استمارة طلب انتساب من قبل أفراد مستقلين إلى الجبهة العربية السورية
 </h1>
 
-
+<div class="steps">
+    <div class="step active">1</div>
+    <div class="step">2</div>
+    <div class="step">3</div>
+    <div class="step">4</div>
+    <div class="step">5</div>
+</div>
 <p>
 تُقدّم هذه الاستمارة من قبل أفراد مستقلين يرغبون في الانضمام إلى الجبهة العربية السورية، والالتزام بنظامها الداخلي، والعمل ضمن أهدافها لتحقيق وحدة سوريا وسيادتها واستقلالها.
 </p>
 
 
-
+<div class="form-page active">
 <div class="section">
 
 <h2>1- البيانات الشخصية</h2>
@@ -147,9 +300,12 @@ button {
 <label>مكان الميلاد *</label>
 <input name = "birth_place" required>
 
-
 <label>تاريخ الميلاد *</label>
-<input type="date" name = "birth_date" required>
+<input 
+    type="date" 
+    name="birth_date" 
+    min="1925-01-01"
+    required>
 
 
 <label>مكان الإقامة الحالي *</label>
@@ -178,9 +334,14 @@ button {
 
 </div>
 
+<div class="nav-buttons">
+    <button type="button" class="next-btn">
+        التالي →
+    </button>
+</div>
+</div>
 
-
-
+<div class="form-page">
 <div class="section">
 
 <h2>2- البيانات الأكاديمية والمهنية</h2>
@@ -204,10 +365,20 @@ button {
 
 </div>
 
+<div class="nav-buttons">
+    <button type="button" class="prev-btn">
+        ← السابق
+    </button>
+
+    <button type="button" class="next-btn">
+        التالي →
+    </button>
+</div>
+
+</div>
 
 
-
-
+<div class="form-page">
 <div class="section">
 
 <h2>3- الالتزام والانتماء</h2>
@@ -250,10 +421,21 @@ button {
 
 </div>
 
+<div class="nav-buttons">
 
+    <button type="button" class="prev-btn">
+        ← السابق
+    </button>
 
+    <button type="button" class="next-btn">
+        التالي →
+    </button>
 
+</div>
 
+</div>
+
+<div class="form-page">
 <div class="section">
 
 <h2>4- إقرار صحة المعلومات</h2>
@@ -268,9 +450,8 @@ button {
 <input name="signature_name" required>
 
 
-<label>التاريخ *</label>
-<input type="date" name="signature_date" required>
-
+<label>تاريخ تقديم الطلب (بتوقيت سورية) </label>
+<input type="date" name="signature_date" id="signature_date" required readonly>
 
 <div class="checkbox">
 <input type="checkbox" name="final_agreement" required>
@@ -278,25 +459,59 @@ button {
 </div>
 
 
+<div class="nav-buttons">
+
+    <button type="button" class="prev-btn">
+        ← السابق
+    </button>
+
+    <button type="button" class="next-btn">
+        التالي →
+    </button>
+
 </div>
 
 
+</div>
+</div>
+<div class="form-page">
 
+<div class="section">
 
+<h2>5- تأكيد وإرسال الطلب</h2>
 
-<button type="submit">
-إرسال طلب الانتساب
-</button>
+<p>
+يرجى مراجعة جميع المعلومات المدخلة والتأكد من دقتها قبل تأكيد إرسال الطلب.
+<br><br>
+نؤكد أن جميع البيانات المقدمة تُعامل بسرية تامة، وتخضع لإجراءات حماية أمنية، ولا تُستخدم إلا ضمن إطار دراسة طلبات الانتساب والإجراءات التنظيمية المعتمدة.
+</p>
 
+<div id="review">
+</div>
 
+<div class="nav-buttons">
+
+    <button type="button" class="prev-btn">
+        ← السابق
+    </button>
+
+    <button type="submit" class="submit-btn">
+        🔒 إرسال طلب الانتساب
+    </button>
+
+</div>
+
+</div>
+</div>
 
 
 <div class="note">
 
 🔒 جميع المعلومات والوثائق المقدمة ستعامل بسرية تامة، وتُستخدم لأغراض تنظيمية داخل الجبهة العربية السورية فقط.
 
-</form>
+
 </div>
+</form>
 <script>
 const publicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -356,7 +571,37 @@ const form = document.querySelector("form");
 
 form.addEventListener("submit", async function(e) {
     e.preventDefault();
+const firstInvalid = Array.from(form.querySelectorAll("[required]"))
+.find(field => {
+    if(field.type === "checkbox") {
+        return !field.checked;
+    }
+    return !field.value.trim();
+});
 
+if(firstInvalid){
+
+    const page = firstInvalid.closest(".form-page");
+    const pageIndex = Array.from(pages).indexOf(page);
+
+    currentPage = pageIndex;
+    showPage(currentPage);
+
+    setTimeout(() => {
+
+    if(firstInvalid.type === "checkbox") {
+        firstInvalid.setCustomValidity("يرجى الموافقة على هذا الإقرار للمتابعة");
+    } else {
+        firstInvalid.setCustomValidity("يرجى تعبئة هذا الحقل");
+    }
+
+    firstInvalid.reportValidity();
+    firstInvalid.focus();
+
+}, 100);
+
+    return;
+}
     const button = e.submitter;
 
     button.disabled = true;
@@ -393,12 +638,15 @@ const encryptedData = await openpgp.encrypt({
         );
 
         if (response.ok) {
+            localStorage.setItem("application_sent", "true");
             button.disabled = true;
             button.innerText = "تم إرسال طلب الانتساب بنجاح";
+            button.style.background = "#0B6623";
+            button.style.color = "#FFFFFF";
+            button.style.borderColor = "#0B6623";
             alert("تم إرسال الطلب بنجاح ✅");
             form.reset();
-            button.disabled = false;
-            button.innerText = "إرسال طلب الانتساب";
+            
         } else {
             const message = await response.text();
             alert(message);
@@ -417,6 +665,120 @@ const encryptedData = await openpgp.encrypt({
 });
 console.log(openpgp); 
 console.log(publicKey);    
+</script>
+<script>
+
+const pages = document.querySelectorAll(".form-page");
+const steps = document.querySelectorAll(".step");
+
+let currentPage = 0;
+
+
+function showPage(index){
+
+    pages.forEach((page, i)=>{
+        page.style.display = i === index ? "block" : "none";
+    });
+
+
+    steps.forEach((step, i)=>{
+        step.classList.toggle(
+            "active",
+            i === index
+        );
+    });
+
+}
+
+
+document.querySelectorAll(".next-btn").forEach(button=>{
+
+    button.addEventListener("click", ()=>{
+
+        if(currentPage < pages.length - 1){
+
+            currentPage++;
+
+            showPage(currentPage);
+
+        }
+
+    });
+
+});
+
+
+document.querySelectorAll(".prev-btn").forEach(button=>{
+
+    button.addEventListener("click", ()=>{
+
+        if(currentPage > 0){
+
+            currentPage--;
+
+            showPage(currentPage);
+
+        }
+
+    });
+
+});
+
+
+// إظهار الصفحة الأولى عند فتح الفورم
+showPage(currentPage);
+
+form.addEventListener("submit", function(e){
+    if (localStorage.getItem("application_sent")) {
+    alert("تم إرسال طلب انتساب مسبقًا من هذا الجهاز.");
+    return;
+}
+
+    const requiredFields = form.querySelectorAll("[required]");
+
+    for (let field of requiredFields){
+
+        if(!field.value.trim()){
+
+            e.preventDefault();
+
+            const page = field.closest(".form-page");
+            const pageIndex = Array.from(pages).indexOf(page);
+
+            currentPage = pageIndex;
+            showPage(currentPage);
+
+            field.reportValidity();
+            field.focus();
+
+            return;
+        }
+
+    }
+
+});
+
+const today = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "Asia/Damascus"
+}).format(new Date());
+
+document.querySelector('input[name="birth_date"]')
+.setAttribute("max", today);
+
+document.querySelector('#signature_date').value = today;
+
+
+if (localStorage.getItem("application_sent")) {
+   const button = document.querySelector('.nav-buttons button[type="submit"]');
+
+    if (button) {
+        button.disabled = true;
+        button.innerText = "✅ تم إرسال طلب الانتساب";
+        button.style.background = "#0B6623";
+        button.style.color = "#FFFFFF";
+        button.style.borderColor = "#0B6623";
+    }
+}
 </script>
 </body>
 </html>
