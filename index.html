@@ -125,19 +125,19 @@ button {
 
 
 <label>اللقب (إن وجد)</label>
-<input>
+<input name ="title">
 
 
 <label>الاسم الثلاثي *</label>
-<input required>
+<input name = "triple_name" required>
 
 
 <label>الاسم الكامل *</label>
-<input required>
+<input name = "full_name" required>
 
 
 <label>الجنس *</label>
-<select required>
+<select name = "gender" required>
 <option value="">اختر</option>
 <option>ذكر</option>
 <option>أنثى</option>
@@ -145,27 +145,27 @@ button {
 
 
 <label>مكان الميلاد *</label>
-<input required>
+<input name = "birth_place" required>
 
 
 <label>تاريخ الميلاد *</label>
-<input type="date" required>
+<input type="date" name = "birth_date" required>
 
 
 <label>مكان الإقامة الحالي *</label>
-<input required>
+<input name = "current_residence" required>
 
 
 <label>المحافظة / المنطقة *</label>
-<input required>
+<input name="governorate" required>
 
 
 <label>الجنسية *</label>
-<input required>
+<input name="nationality" required>
 
 
 <label>رقم الهاتف</label>
-<input>
+<input name="phone">
 
 
 <label>البريد الإلكتروني *</label>
@@ -173,7 +173,7 @@ button {
 
 
 <label>العنوان التفصيلي </label>
-<input>
+<input name="address">
 
 
 </div>
@@ -187,19 +187,19 @@ button {
 
 
 <label>التخصص / الجامعة / المعهد</label>
-<input>
+<input name="specialization">
 
 
 <label>المؤهل العلمي</label>
-<input>
+<input name="education">
 
 
 <label>مكان العمل</label>
-<input>
+<input name="workplace">
 
 
 <label>الخبرات الحالية</label>
-<textarea></textarea>
+<textarea name="experience"></textarea>
 
 
 </div>
@@ -214,36 +214,36 @@ button {
 
 
 <label>أسباب رغبتي في الانضمام *</label>
-<textarea required></textarea>
+<textarea name="joining_reason" required></textarea>
 
 
 
 <div class="checkbox">
-<input type="checkbox" required>
+<input type="checkbox" name="agree_principles" required>
  ألتزم بمبادئ الجبهة العربية السورية وأهدافها.
 </div>
 
 
 <div class="checkbox">
-<input type="checkbox" required>
+<input type="checkbox" name="agree_internal_rules" required>
  أحترم نظامها الداخلي وقرارات هيئاتها القيادية.
 </div>
 
 
 <div class="checkbox">
-<input type="checkbox" required>
+<input type="checkbox" name="agree_unity" required>
  أعمل بإخلاص من أجل وحدة سوريا وسيادتها.
 </div>
 
 
 <div class="checkbox">
-<input type="checkbox" required>
+<input type="checkbox" name="agree_no_harm" required>
  أمتنع عن أي نشاط يضر بالحركة أو أهدافها.
 </div>
 
 
 <div class="checkbox">
-<input type="checkbox" required>
+<input type="checkbox" name="agree_truth" required>
  أتحمل المسؤولية الكاملة عن صحة معلوماتي.
 </div>
 
@@ -265,15 +265,15 @@ button {
 
 
 <label>الاسم *</label>
-<input required>
+<input name="signature_name" required>
 
 
 <label>التاريخ *</label>
-<input type="date" required>
+<input type="date" name="signature_date" required>
 
 
 <div class="checkbox">
-<input type="checkbox" required>
+<input type="checkbox" name="final_agreement" required>
  أوافق على الإقرار بصحة المعلومات المقدمة.
 </div>
 
