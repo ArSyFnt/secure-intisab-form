@@ -630,6 +630,7 @@ const encryptedData = await openpgp.encrypt({
             "https://secure-intisab-api.arabicsyrianfront.workers.dev/",
             {
                 method: "POST",
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
     email: email,
     encrypted_data: encryptedData
