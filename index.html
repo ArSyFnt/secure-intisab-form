@@ -233,6 +233,68 @@ button {
     background: #C49A39;
     color: #0A0A0A;
 }
+    .success-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-modal-content {
+    background: #fff;
+    max-width: 450px;
+    width: 90%;
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 3px solid #C49A39;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    animation: fadeIn 0.3s ease;
+}
+
+.success-modal-content h2 {
+    color: #0A0A0A;
+    margin: 15px 0 10px;
+    font-size: 22px;
+    background: none;
+    padding: 0;
+}
+
+.success-modal-content p {
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.success-modal-content button {
+    background: #0A0A0A;
+    color: #C49A39;
+    border: 2px solid #C49A39;
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    margin-top: 0;
+    width: auto;
+    transition: 0.3s;
+}
+
+.success-modal-content button:hover {
+    background: #C49A39;
+    color: #0A0A0A;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
 </style>
 <script src="https://unpkg.com/openpgp@5/dist/openpgp.min.js"></script>
 </head>
@@ -512,6 +574,14 @@ button {
 
 </div>
 </form>
+<div id="successModal" class="success-modal">
+    <div class="success-modal-content">
+        <div style="font-size:55px;">✅</div>
+        <h2>تم إرسال الطلب بنجاح</h2>
+        <p>شكراً لتقديم طلب الانتساب.<br>سيتم مراجعة طلبك من قبل الهيئة الإدارية.</p>
+        <button id="closeModalBtn">حسناً</button>
+    </div>
+</div>  
 <script>
 const publicKey = `-----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -638,17 +708,35 @@ const encryptedData = await openpgp.encrypt({
             }
         );
 
-        if (response.ok) {
-            localStorage.setItem("application_sent", "true");
-            button.disabled = true;
-            button.innerText = "تم إرسال طلب الانتساب بنجاح";
-            button.style.background = "#0B6623";
-            button.style.color = "#FFFFFF";
-            button.style.borderColor = "#0B6623";
-            alert("تم إرسال الطلب بنجاح ✅");
+     if (response.ok) {
+    localStorage.setItem("application_sent", "true");
+    button.disabled = true;
+    button.innerText = "تم إرسال طلب الانتساب بنجاح";
+    button.style.background = "#0B6623";
+    button.style.color = "#FFFFFF";
+    button.style.borderColor = "#0B6623";
+
+
+    var modal = document.getElementById("successModal");
+    modal.style.display = "flex";
+
+    document.getElementById("closeModalBtn").onclick = function() {
+        modal.style.display = "none";
+        form.reset();
+        // إذا أردت السماح بتقديم طلب جديد من نفس الجهاز، أزل التعليق من السطر التالي:
+        // localStorage.removeItem("application_sent");
+        window.scrollTo(0, 0);
+    };
+
+    // إغلاق النافذة أيضاً عند النقر خارج الصندوق الأبيض (اختياري)
+    modal.addEventListener("click", function(e) {
+        if (e.target === modal) {
+            modal.style.display = "none";
             form.reset();
-            
-        } else {
+            window.scrollTo(0, 0);
+        }
+    });
+} else {
             const message = await response.text();
             alert(message);
             button.disabled = false;
